@@ -4,11 +4,17 @@ import "fmt"
 
 func main() {
 	var n, m int
-	fmt.Scan(&n, &m)
+	_, err := fmt.Scan(&n, &m)
+	if err != nil {
+		return
+	}
 
 	t := make([]int, m)
 	for i := 0; i < m; i++ {
-		fmt.Scan(&t[i])
+		_, err := fmt.Scan(&t[i])
+		if err != nil {
+			return
+		}
 	}
 	p := make([]int, n)
 	tt := 0
