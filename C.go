@@ -11,9 +11,9 @@ import (
 )
 
 type Offer struct {
-	Market_sku int    `json:"market_sku"`
-	Offer_id   string `json:"offer_id"`
-	Price      int    `json:"price"`
+	MarketSku int    `json:"market_sku"`
+	OfferId   string `json:"offer_id"`
+	Price     int    `json:"price"`
 }
 type lessFunc func(p1, p2 *Offer) bool
 
@@ -40,17 +40,15 @@ func (ms *Offers) Len() int {
 	return len(ms.Offers)
 }
 
-// Своп - это часть sort.Interface.
+// Swap Своп - это часть sort.Interface.
 func (ms *Offers) Swap(i, j int) {
 	ms.Offers[i], ms.Offers[j] = ms.Offers[j], ms.Offers[i]
 }
 
-// Меньше - это часть sort.Interface. Это реализуется путем зацикливания по
+// Less Меньше - это часть sort.Interface. Это реализуется путем зацикливания по
 // меньше функций, пока не будет найдено сравнение, которое различает
 // два элемента (один меньше другого). Обратите внимание, что он может вызывать
-// меньше функций в два раза за вызов. Мы могли бы изменить функции, чтобы вернуть
-// -1, 0, 1 и уменьшим количество вызовов для большей эффективности:
-// упражнение для читателя.
+// меньше функций в два раза за вызов.
 func (ms *Offers) Less(i, j int) bool {
 	p, q := &ms.Offers[i], &ms.Offers[j]
 	// Пробуем все, кроме последнего сравнения.
@@ -118,7 +116,7 @@ func main() {
 		return c1.Price < c2.Price
 	}
 	marketsku := func(c1, c2 *Offer) bool {
-		return c1.Market_sku < c2.Market_sku
+		return c1.MarketSku < c2.MarketSku
 	}
 	OrderedBy(price, marketsku).Sort(all.Offers)
 
