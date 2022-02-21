@@ -21,24 +21,24 @@ func (c *customStack) Push(name int) {
 }
 
 func (c *customStack) Pop() error {
-	len := len(c.stack)
-	if len > 0 {
+	l := len(c.stack)
+	if l > 0 {
 		c.lock.Lock()
 		defer c.lock.Unlock()
-		c.stack = c.stack[:len-1]
+		c.stack = c.stack[:l-1]
 		return nil
 	}
-	return fmt.Errorf("Pop Error: Stack is empty")
+	return fmt.Errorf("pop Error: Stack is empty")
 }
 
 func (c *customStack) Front() (int, error) {
-	len := len(c.stack)
-	if len > 0 {
+	l := len(c.stack)
+	if l > 0 {
 		c.lock.Lock()
 		defer c.lock.Unlock()
-		return c.stack[len-1], nil
+		return c.stack[l-1], nil
 	}
-	return 0, fmt.Errorf("Peep Error: Stack is empty")
+	return 0, fmt.Errorf("peep Error: Stack is empty")
 }
 
 func (c *customStack) Size() int {
@@ -91,7 +91,10 @@ func main() {
 			}
 		case "pop":
 			{
-				customStack.Pop()
+				err := customStack.Pop()
+				if err != nil {
+					return
+				}
 			}
 		default:
 			{

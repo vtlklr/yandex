@@ -5,7 +5,10 @@ import "fmt"
 func main() {
 	var i, k, n, x, y int
 	ok := true
-	fmt.Scan(&n)
+	_, err := fmt.Scan(&n)
+	if err != nil {
+		return
+	}
 	for ok {
 		if i%2 != 0 && i != 0 {
 			for j := 0; j < i && ok; j++ {
