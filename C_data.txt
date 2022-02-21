@@ -1,0 +1,3 @@
+пример данных для ввода для задачи C
+{"offers": [{"offer_id": "offer1", "market_sku": 13290123, "price": 1499},{"offer_id": "offer2", "market_sku": 500000, "price": 499}]}
+{"offers": [{"offer_id": "offer3", "market_sku": 66666666, "price": 1499},{"offer_id": "offer4", "market_sku": 78546, "price": 1499}]}
